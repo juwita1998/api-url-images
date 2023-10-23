@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="image-container"></div>
+
+
+
+
+<script>
+    let getimage = document.getElementById("image-container")
+
+         document.addEventListener("DOMContentLoaded",()=>{
+            fetch('/images')
+           .then(res=> res.json())
+          .then((data)=>{
+             console.log(data)
+           data.forEach((item)=>{
+               let h1 = document.createElement("h1")
+               h1.textContent = `my name is ${item.nama} and my age is ${item.age}`
+                
+               getimage.appendChild(h1)
+
+               let img = document.createElement("img")
+                      img.innerHTML = "and my photos are"
+                      img.src = `${item.images[1]}`
+
+                      getimage.appendChild(img)
+
+            //    item.images.forEach((gambar)=>{
+            //           let img = document.createElement("img")
+            //           img.innerHTML = "and my photos are"
+            //           img.src = `${gambar}`
+
+            //           getimage.appendChild(img)
+            //    })
+           })
+          })
+            
+        .catch((error)=>{
+              console.log(error)
+        })
+
+         })
+          
+
+
+    
+
+
+</script>
+    
+</body>
+</html>
