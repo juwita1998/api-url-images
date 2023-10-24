@@ -7,14 +7,14 @@ const cors = require("cors")
 const port = 5000;
 app.use(cors())
 
-app.use(express.static('public'))
+ app.use(express.static('public'))
 mongoose.connect(url,{})
 .then(result => console.log("database is connected"))
 .catch(err => console.log(err))
 
 const studentScheme = new mongoose.Schema({
-    name:String,
-    age:Number,
+    price:Number,
+    details:String,
    
 
 })
@@ -37,6 +37,29 @@ app.get('/images',async (req,res)=>{
     
 
 })
+
+
+const intro = new mongoose.Schema({
+    buttonText : String,
+    available:String
+
+
+})
+
+const newintro = mongoose.model('intro',intro)
+app.get('/images/intro',async (req,res)=>{
+     try {
+        const val = await newintro.find()
+
+        res.json(val)
+        
+     } catch (error) {
+        res.status(500).json({ error: "Internal server error" });
+     }
+})
+
+
+
 
 app.get('/',(req,res)=>{
     res.send("hello from anjing")

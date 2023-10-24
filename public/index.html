@@ -16,19 +16,19 @@
     let getimage = document.getElementById("image-container")
 
          document.addEventListener("DOMContentLoaded",()=>{
-            fetch('/images')
+            fetch('/images/intro')
            .then(res=> res.json())
           .then((data)=>{
              console.log(data)
            data.forEach((item)=>{
                let h1 = document.createElement("h1")
-               h1.textContent = `my name is ${item.nama} and my age is ${item.age}`
+               h1.textContent = `desc ${item.buttonText} and my age is ${item.available}`
                 
                getimage.appendChild(h1)
 
                let img = document.createElement("img")
                       img.innerHTML = "and my photos are"
-                      img.src = `${item.images[1]}`
+                      img.src = `${item.image}`
 
                       getimage.appendChild(img)
 
